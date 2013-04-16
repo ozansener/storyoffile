@@ -48,19 +48,19 @@ for fN in filel:
 	for i in range(len(revs)): #Maximum number of revision is 1000 in default case
 		f, metadata = client.get_file_and_metadata( revs[i]['path'],revs[i]['rev']) Fetch data
 		# Write revision of the file
-		out = open("/home/ozan/thesisLog" + revs[i]['path'] + str(revs[i]['revision']), 'w')
+		out = open("RESULT_DIR" + revs[i]['path'] + str(revs[i]['revision']), 'w')
 		out.write(f.read())
 		out.close()
 		dictTimeStamps[revs[i]['revision']]=revs[i]['modified']
 		# Process your files to get necessary data
-		wcBeforeStrip=int(commands.getstatusoutput('wc -w '+"/home/ozan/thesisLog" + revs[i]['path'] + str(revs[i]['revision'])+' |cut -f1 -d" "')[1])
-		os.system("/home/ozan/thesisLog/a.pr "+"/home/ozan/thesisLog" + revs[i]['path'] + str(revs[i]['revision'])+" >tmp.txt")
+		wcBeforeStrip=int(commands.getstatusoutput('wc -w '+"RESULT_DIR" + revs[i]['path'] + str(revs[i]['revision'])+' |cut -f1 -d" "')[1])
+		os.system("./StripLatexComments.pl "+"RESULT_DIR" + revs[i]['path'] + str(revs[i]['revision'])+" >tmp.txt")
 		wcAfterStrip=int(commands.getstatusoutput('wc -w '+"tmp.txt"+' |cut -f1 -d" "')[1])
 		# Store the data
 		dictFS[revs[i]['revision']]=wcBeforeStrip
 		dictFSStr[revs[i]['revision']]=wcAfterStrip
 	# Save the story of a single file to a CSV file
-	w2 = csv.writer(open( "/home/ozan/thesisLog" + revs[i]['path']+".csv", "w"),delimiter=';')
+	w2 = csv.writer(open( "RESULT_DIR" + revs[i]['path']+".csv", "w"),delimiter=';')
 	for key, val in dictFS.items():
 		w2.writerow([key,dictTimeStamps[key],val,dictFSStr[key]])
 #Save the timestamps for further usage
