@@ -54,7 +54,7 @@ for fN in filel:
 		dictTimeStamps[revs[i]['revision']]=revs[i]['modified']
 		# Process your files to get necessary data
 		wcBeforeStrip=int(commands.getstatusoutput('wc -w '+"RESULT_DIR" + revs[i]['path'] + str(revs[i]['revision'])+' |cut -f1 -d" "')[1])
-		os.system("./a.pr "+"RESULT_DIR" + revs[i]['path'] + str(revs[i]['revision'])+" >tmp.txt")
+		os.system("./StripLatexComments.pl "+"RESULT_DIR" + revs[i]['path'] + str(revs[i]['revision'])+" >tmp.txt")
 		wcAfterStrip=int(commands.getstatusoutput('wc -w '+"tmp.txt"+' |cut -f1 -d" "')[1])
 		# Store the data
 		dictFS[revs[i]['revision']]=wcBeforeStrip
