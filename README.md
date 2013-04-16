@@ -8,3 +8,7 @@ Script utilizes the Dropbox API, and it can be reached through https://www.dropb
 In order to combine stories of different files in a single CSV file, a script is also included [combine.py]
 
 Main aim of the script was computing some statistics related to my master thesis as explained in a blog post.
+
+Since I used the script to get statistics of Latex files, I also included a perl script which strips out the latex comments [StripLatexComments.pl]. Script is taken from "http://tex.stackexchange.com/questions/83663/utility-to-strip-comments-from-latex-source"
+
+Plots about my thesis that I obtained after fetching data is also included in Plots/ folder with necessary Mathmetica 7 script used to generate XKCD like plots.
